@@ -9,7 +9,6 @@ import pandas
 def thermal_conductivitiy_featurize_and_predict(data):
     preprocessor = pk.load(open("pickle_jar/featurizer.pk","rb"))
     model = pk.load(open("pickle_jar/model.pk","rb"))
-
     composition = pandas.DataFrame(data["composition"],columns=["composition"])
     composition["computational_label"] = 0
     composition["kappa"] = 0

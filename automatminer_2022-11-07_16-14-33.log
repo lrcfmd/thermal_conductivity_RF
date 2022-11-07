@@ -1,0 +1,23 @@
+2022-11-07 16:14:34 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 16:14:34 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 16:14:34 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 16:14:40 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 16:14:41 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 16:14:42 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 16:14:42 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 16:14:43 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 16:14:43 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 16:14:43 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 16:14:43 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 16:14:43 INFO     DataCleaner: Starting transforming.
+2022-11-07 16:14:43 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 16:14:43 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 16:14:43 INFO     DataCleaner: Before handling na: 2058 samples, 142 features
+2022-11-07 16:14:43 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 16:14:43 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 16:14:43 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 16:14:43 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 16:14:43 INFO     DataCleaner: After handling na: 2058 samples, 134 features
+2022-11-07 16:14:43 INFO     DataCleaner: Reordering columns...
+2022-11-07 16:14:43 INFO     DataCleaner: Finished transforming.

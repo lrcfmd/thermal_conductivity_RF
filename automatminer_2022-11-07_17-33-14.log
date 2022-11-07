@@ -1,0 +1,250 @@
+2022-11-07 17:33:14 INFO     AutoFeaturizer: Starting fitting.
+2022-11-07 17:33:14 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:33:15 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Will remove YangSolidSolution because it's fraction passing the precheck for this dataset (0.19476372924648785) was less than the minimum (0.9)
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Will remove Miedema because it's fraction passing the precheck for this dataset (0.19476372924648785) was less than the minimum (0.9)
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Finished fitting.
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:18 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:33:19 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:33:19 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:33:20 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:33:21 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:33:21 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:33:21 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:33:21 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:33:21 INFO     DataCleaner: Starting fitting.
+2022-11-07 17:33:21 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'drop'
+2022-11-07 17:33:21 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:33:21 INFO     DataCleaner: Before handling na: 1566 samples, 142 features
+2022-11-07 17:33:21 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:33:21 INFO     DataCleaner: Handling feature na by max na threshold of 0 with method 'drop'.
+2022-11-07 17:33:21 INFO     DataCleaner: These 8 features were removed as they had more than 0% missing values: {'compound possible', 'avg anion electron affinity', 'maximum oxidation state', 'minimum oxidation state', 'max ionic char', 'avg ionic char', 'std_dev oxidation state', 'range oxidation state'}
+2022-11-07 17:33:21 INFO     DataCleaner: After handling na: 1566 samples, 134 features
+2022-11-07 17:33:21 INFO     DataCleaner: Finished fitting.
+2022-11-07 17:33:25 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:25 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:33:26 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:33:27 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:33:28 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:33:29 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:33:29 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:33:30 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:33:30 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:33:30 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:33:30 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:33:30 INFO     DataCleaner: Starting transforming.
+2022-11-07 17:33:30 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 17:33:30 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:33:30 INFO     DataCleaner: Before handling na: 392 samples, 142 features
+2022-11-07 17:33:30 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:33:30 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 17:33:30 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 17:33:30 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 17:33:30 INFO     DataCleaner: After handling na: 392 samples, 134 features
+2022-11-07 17:33:30 INFO     DataCleaner: Reordering columns...
+2022-11-07 17:33:30 INFO     DataCleaner: Finished transforming.
+2022-11-07 17:33:31 INFO     AutoFeaturizer: Starting fitting.
+2022-11-07 17:33:31 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:33:31 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Will remove YangSolidSolution because it's fraction passing the precheck for this dataset (0.1979565772669221) was less than the minimum (0.9)
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Will remove Miedema because it's fraction passing the precheck for this dataset (0.1979565772669221) was less than the minimum (0.9)
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Finished fitting.
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:34 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:33:35 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:33:36 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:33:36 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:33:38 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:33:38 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:33:38 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:33:38 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:33:38 INFO     DataCleaner: Starting fitting.
+2022-11-07 17:33:38 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'drop'
+2022-11-07 17:33:38 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:33:38 INFO     DataCleaner: Before handling na: 1566 samples, 142 features
+2022-11-07 17:33:38 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:33:38 INFO     DataCleaner: Handling feature na by max na threshold of 0 with method 'drop'.
+2022-11-07 17:33:38 INFO     DataCleaner: These 8 features were removed as they had more than 0% missing values: {'compound possible', 'avg anion electron affinity', 'maximum oxidation state', 'minimum oxidation state', 'max ionic char', 'avg ionic char', 'std_dev oxidation state', 'range oxidation state'}
+2022-11-07 17:33:38 INFO     DataCleaner: After handling na: 1566 samples, 134 features
+2022-11-07 17:33:38 INFO     DataCleaner: Finished fitting.
+2022-11-07 17:33:42 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:42 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:33:43 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:33:44 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:33:45 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:33:46 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:33:46 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:33:47 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:33:47 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:33:47 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:33:47 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:33:47 INFO     DataCleaner: Starting transforming.
+2022-11-07 17:33:47 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 17:33:47 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:33:47 INFO     DataCleaner: Before handling na: 392 samples, 142 features
+2022-11-07 17:33:47 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:33:47 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 17:33:47 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 17:33:47 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 17:33:47 INFO     DataCleaner: After handling na: 392 samples, 134 features
+2022-11-07 17:33:47 INFO     DataCleaner: Reordering columns...
+2022-11-07 17:33:47 INFO     DataCleaner: Finished transforming.
+2022-11-07 17:33:48 INFO     AutoFeaturizer: Starting fitting.
+2022-11-07 17:33:48 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:33:48 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Will remove YangSolidSolution because it's fraction passing the precheck for this dataset (0.20242656449553) was less than the minimum (0.9)
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Will remove Miedema because it's fraction passing the precheck for this dataset (0.20242656449553) was less than the minimum (0.9)
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe to be fitted. Skipping...
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Finished fitting.
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:51 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:33:52 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:33:53 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:33:53 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:33:55 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:33:55 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:33:55 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:33:55 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:33:55 INFO     DataCleaner: Starting fitting.
+2022-11-07 17:33:55 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'drop'
+2022-11-07 17:33:55 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:33:55 INFO     DataCleaner: Before handling na: 1566 samples, 142 features
+2022-11-07 17:33:55 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:33:55 INFO     DataCleaner: Handling feature na by max na threshold of 0 with method 'drop'.
+2022-11-07 17:33:55 INFO     DataCleaner: These 8 features were removed as they had more than 0% missing values: {'compound possible', 'avg anion electron affinity', 'maximum oxidation state', 'minimum oxidation state', 'max ionic char', 'avg ionic char', 'std_dev oxidation state', 'range oxidation state'}
+2022-11-07 17:33:55 INFO     DataCleaner: After handling na: 1566 samples, 134 features
+2022-11-07 17:33:55 INFO     DataCleaner: Finished fitting.
+2022-11-07 17:33:59 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:33:59 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:34:00 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:34:02 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:34:02 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:34:03 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:34:03 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:34:04 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:34:04 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:34:04 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:34:04 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:34:04 INFO     DataCleaner: Starting transforming.
+2022-11-07 17:34:04 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 17:34:04 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:34:04 INFO     DataCleaner: Before handling na: 392 samples, 142 features
+2022-11-07 17:34:04 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:34:04 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 17:34:04 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 17:34:04 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 17:34:04 INFO     DataCleaner: After handling na: 392 samples, 134 features
+2022-11-07 17:34:04 INFO     DataCleaner: Reordering columns...
+2022-11-07 17:34:04 INFO     DataCleaner: Finished transforming.
+2022-11-07 17:34:05 INFO     AutoFeaturizer: Starting fitting.
+2022-11-07 17:34:05 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:34:05 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Will remove YangSolidSolution because it's fraction passing the precheck for this dataset (0.194639438417358) was less than the minimum (0.9)
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Will remove Miedema because it's fraction passing the precheck for this dataset (0.194639438417358) was less than the minimum (0.9)
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Finished fitting.
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:34:08 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:34:09 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:34:09 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:34:10 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:34:11 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:34:11 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:34:11 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:34:11 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:34:11 INFO     DataCleaner: Starting fitting.
+2022-11-07 17:34:11 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'drop'
+2022-11-07 17:34:11 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:34:11 INFO     DataCleaner: Before handling na: 1567 samples, 142 features
+2022-11-07 17:34:11 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:34:11 INFO     DataCleaner: Handling feature na by max na threshold of 0 with method 'drop'.
+2022-11-07 17:34:11 INFO     DataCleaner: These 8 features were removed as they had more than 0% missing values: {'compound possible', 'avg anion electron affinity', 'maximum oxidation state', 'minimum oxidation state', 'max ionic char', 'avg ionic char', 'std_dev oxidation state', 'range oxidation state'}
+2022-11-07 17:34:11 INFO     DataCleaner: After handling na: 1567 samples, 134 features
+2022-11-07 17:34:11 INFO     DataCleaner: Finished fitting.
+2022-11-07 17:34:16 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:34:16 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:34:16 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:34:18 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:34:18 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:34:19 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:34:20 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:34:21 INFO     DataCleaner: Starting transforming.
+2022-11-07 17:34:21 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 17:34:21 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:34:21 INFO     DataCleaner: Before handling na: 391 samples, 142 features
+2022-11-07 17:34:21 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:34:21 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 17:34:21 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 17:34:21 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 17:34:21 INFO     DataCleaner: After handling na: 391 samples, 134 features
+2022-11-07 17:34:21 INFO     DataCleaner: Reordering columns...
+2022-11-07 17:34:21 INFO     DataCleaner: Finished transforming.
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Starting fitting.
+2022-11-07 17:34:21 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:34:22 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Will remove YangSolidSolution because it's fraction passing the precheck for this dataset (0.19591576260370133) was less than the minimum (0.9)
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Will remove Miedema because it's fraction passing the precheck for this dataset (0.19591576260370133) was less than the minimum (0.9)
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe to be fitted. Skipping...
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Finished fitting.
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:34:25 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:34:26 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:34:26 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:34:27 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:34:29 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:34:29 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:34:29 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:34:29 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:34:29 INFO     DataCleaner: Starting fitting.
+2022-11-07 17:34:29 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'drop'
+2022-11-07 17:34:29 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:34:29 INFO     DataCleaner: Before handling na: 1567 samples, 142 features
+2022-11-07 17:34:29 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:34:29 INFO     DataCleaner: Handling feature na by max na threshold of 0 with method 'drop'.
+2022-11-07 17:34:29 INFO     DataCleaner: These 8 features were removed as they had more than 0% missing values: {'compound possible', 'avg anion electron affinity', 'maximum oxidation state', 'minimum oxidation state', 'max ionic char', 'avg ionic char', 'std_dev oxidation state', 'range oxidation state'}
+2022-11-07 17:34:29 INFO     DataCleaner: After handling na: 1567 samples, 134 features
+2022-11-07 17:34:29 INFO     DataCleaner: Finished fitting.
+2022-11-07 17:34:33 INFO     AutoFeaturizer: Starting transforming.
+2022-11-07 17:34:33 INFO     AutoFeaturizer: Compositions detected as strings. Attempting conversion to Composition objects...
+2022-11-07 17:34:33 INFO     AutoFeaturizer: Guessing oxidation states of compositions, as they were not present in input.
+2022-11-07 17:34:35 INFO     AutoFeaturizer: Featurizing with ElementProperty.
+2022-11-07 17:34:36 INFO     AutoFeaturizer: Featurizing with OxidationStates.
+2022-11-07 17:34:36 INFO     AutoFeaturizer: Featurizing with ElectronAffinity.
+2022-11-07 17:34:37 INFO     AutoFeaturizer: Featurizing with IonProperty.
+2022-11-07 17:34:38 INFO     AutoFeaturizer: Featurizer type structure not in the dataframe. Skipping...
+2022-11-07 17:34:38 INFO     AutoFeaturizer: Featurizer type bandstructure not in the dataframe. Skipping...
+2022-11-07 17:34:38 INFO     AutoFeaturizer: Featurizer type dos not in the dataframe. Skipping...
+2022-11-07 17:34:38 INFO     AutoFeaturizer: Finished transforming.
+2022-11-07 17:34:38 INFO     DataCleaner: Starting transforming.
+2022-11-07 17:34:38 INFO     DataCleaner: Cleaning with respect to samples with sample na_method 'fill'
+2022-11-07 17:34:38 INFO     DataCleaner: Replacing infinite values with nan for easier screening.
+2022-11-07 17:34:38 INFO     DataCleaner: Before handling na: 391 samples, 142 features
+2022-11-07 17:34:38 INFO     DataCleaner: 0 samples did not have target values. They were dropped.
+2022-11-07 17:34:38 WARNING  DataCleaner: Mismatched columns found in dataframe used for fitting and argument dataframe.
+2022-11-07 17:34:38 WARNING  DataCleaner: Coercing mismatched columns...
+2022-11-07 17:34:38 WARNING  DataCleaner: Following columns are being dropped:
+['minimum oxidation state', 'maximum oxidation state', 'range oxidation state', 'std_dev oxidation state', 'avg anion electron affinity', 'compound possible', 'max ionic char', 'avg ionic char']
+2022-11-07 17:34:38 INFO     DataCleaner: After handling na: 391 samples, 134 features
+2022-11-07 17:34:38 INFO     DataCleaner: Reordering columns...
+2022-11-07 17:34:38 INFO     DataCleaner: Finished transforming.

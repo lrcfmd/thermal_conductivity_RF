@@ -9,26 +9,23 @@ class automatminer_featurizer_sklearn_pipeline():
         self.pipe = auto_feat.AutoFeaturizer(preset=preset)
         self.DataCleaner = DataCleaner(max_na_frac=0)
         self.RobustScalar = RobustScaler()
-    def fit_transform(self,composition_frame,kappa_series,**kargs):
-        copy = composition_frame.copy()
-
-        #Kappa is required for auto featurizer
-        copy["kappa"] = kappa_series
-        copy = self.pipe.fit_transform(copy,"kappa")
-        print(copy)
-        copy = self.DataCleaner.fit_transform(copy,"kappa",)
-        labels = copy["kappa"]
-        copy = copy.drop("kappa",axis=1)
-
-        copy_columns = copy.columns
-        copy = self.RobustScalar.fit_transform(copy)
-        copy = pandas.DataFrame(copy,columns=copy_columns)
-        return copy,labels
+    def fit_transform(self,composition_frame,y="kappa",**kargs):
+        composition_frame = pandas.DataFrame(composition_frame)
+        composition_frame = self.pipe.fit_transform(composition_frame,y)
+        composition_frame = self.DataCleaner.fit_transform(composition_frame,y,)
+        labels = composition_frame[y]
+        composition_frame = composition_frame.drop(y,axis=1)
+        copy_columns = composition_frame.columns
+        composition_frame = self.RobustScalar.fit_transform(composition_frame)
+        composition_frame = pandas.DataFrame(composition_frame,columns=copy_columns)
+        return composition_frame,labels
     def transform(self,composition_dataframe,y="kappa",**kargs):
-        labels = composition_dataframe["kappa"]
-        result = self.pipe.transform(composition_dataframe,y)
-        print(result)
-        result = self.DataCleaner.transform(result,y)
-        result = result.drop("kappa",axis=1)
-        result = self.RobustScalar.transform(result)
-        return result,labels
+        data = pandas.DataFrame(composition_dataframe)
+        data = self.pipe.transform(data,y)
+        data = self.DataCleaner.transform(data,y)
+        labels = data[y]
+        data = data.drop(y,axis=1)
+        data_columns = data.columns
+        data = self.RobustScalar.transform(data)
+        data = pandas.DataFrame(data,columns=data_columns)
+        return data,labels
