@@ -1,0 +1,10 @@
+**/__pycache__/
+.venv/
+.git/
+.gitignore
+.DS_Store
+# Model artifacts are provided at runtime, never baked into the image.
+src/model/artifacts/*.pk
+# Training code/data and test fixtures are not part of the runtime image.
+training/
+tests/

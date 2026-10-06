@@ -1,0 +1,67 @@
+{
+  "$schema": "./model.schema.json",
+  "name": "thermal-conductivity-rf",
+  "version": "1.0.0",
+
+  "assets": {
+    "artifacts/model.pk": {
+      "type": "file",
+      "mime_type": "application/octet-stream",
+      "required": true,
+      "description": "Random-forest regressor (scikit-learn 0.22.2 pickle, 100 trees, 133 features) predicting thermal conductivity from Magpie composition features"
+    }
+  },
+
+  "parameters": {},
+
+  "execution": {
+    "modes": {
+      "instance": {
+        "description": "Predict the thermal conductivity of a single chemical composition from its Magpie elemental-property features.",
+        "response": "immediate",
+        "inputs": {
+          "composition": {
+            "type": "string",
+            "required": true,
+            "description": "Chemical formula, e.g. \"Bi2Te3\" or \"Ag9 Tl1 Te5\""
+          }
+        },
+        "outputs": {
+          "thermal_conductivity": {
+            "type": "number",
+            "description": "Predicted thermal conductivity, kappa (W m^-1 K^-1)"
+          },
+          "imputed_features": {
+            "type": "integer",
+            "description": "Number of features unavailable for this composition and replaced by training-set means (0 = none; non-zero predictions are less reliable)"
+          }
+        }
+      },
+
+      "dataset": {
+        "description": "Batch-predict thermal conductivity for many compositions from a CSV with a 'composition' column. Produces a predictions CSV and a histogram of the predicted values.",
+        "response": "deferred",
+        "inputs": {
+          "file": {
+            "type": "file",
+            "mime_type": "text/csv",
+            "required": true,
+            "description": "CSV file with a 'composition' column of chemical formulas; other columns are passed through"
+          }
+        },
+        "outputs": {
+          "predictions.csv": {
+            "type": "file",
+            "mime_type": "text/csv",
+            "description": "The input rows with kappa_pred (W m^-1 K^-1), imputed_features and error columns appended"
+          },
+          "predictions_hist.png": {
+            "type": "file",
+            "mime_type": "image/png",
+            "description": "Histogram of the predicted thermal conductivities"
+          }
+        }
+      }
+    }
+  }
+}

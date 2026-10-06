@@ -1,0 +1,7 @@
+{
+  "mode": "dataset",
+  "inputs": {
+    "file": { "uri": "file://data/input.csv", "mime_type": "text/csv" }
+  },
+  "parameters": {}
+}
