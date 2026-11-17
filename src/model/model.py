@@ -10,8 +10,9 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matminer.featurizers.composition import ElementProperty  # noqa: E402
-from pymatgen.core import Composition  # noqa: E402
+from pymatgen.core import Composition, Element  # noqa: E402
 
+from infrastructure.handler import InputError  # noqa: E402
 from infrastructure.logging import newLogger  # noqa: E402
 from model.forest import Forest  # noqa: E402
 
@@ -45,6 +46,58 @@ def _artifacts_dir() -> Path:
     if workdir_assets.is_dir():
         return workdir_assets
     return Path(__file__).resolve().parent / "artifacts"
+
+
+FORMULA_HINT = (
+    "Use element symbols with amounts, e.g. Bi2Te3 or Ag9 Tl1 Te5 "
+    "(symbols are case-sensitive)."
+)
+
+
+def parse_composition(composition) -> Composition:
+    """A pymatgen Composition, or an InputError saying what is wrong with it."""
+    if composition is None or (
+        isinstance(composition, float) and np.isnan(composition)
+    ) or (isinstance(composition, str) and not composition.strip()):
+        raise InputError(f"The composition is empty. {FORMULA_HINT}")
+    if not isinstance(composition, str):
+        raise InputError(
+            f"{composition!r} is not a valid chemical formula. {FORMULA_HINT}"
+        )
+    text = composition.strip()
+    try:
+        comp = Composition(text)
+    except KeyError as e:  # well-formed token that is not an element, e.g. "Xx"
+        raise InputError(
+            f"{text!r} is not a valid chemical formula: {e.args[0]!r} is not an "
+            f"element symbol. {FORMULA_HINT}"
+        ) from None
+    except ValueError as e:
+        if "negative" in str(e):
+            raise InputError(
+                f"{text!r} has a negative amount; element amounts must be above 0."
+            ) from None
+        raise InputError(
+            f"{text!r} is not a valid chemical formula. {FORMULA_HINT}"
+        ) from None
+    except Exception:  # pymatgen raises assorted errors for odd strings
+        raise InputError(
+            f"{text!r} is not a valid chemical formula. {FORMULA_HINT}"
+        ) from None
+    unknown = [str(el.symbol) for el in comp.elements if not isinstance(el, Element)]
+    if unknown:  # pymatgen reads symbols such as "Xx" as placeholder species
+        raise InputError(
+            f"{text!r} is not a valid chemical formula: {unknown[0]!r} is not an "
+            f"element symbol. {FORMULA_HINT}"
+        )
+    amounts = list(comp.values())
+    if not all(np.isfinite(a) for a in amounts):
+        raise InputError(f"{text!r} has an element amount that is too large.")
+    if comp.num_atoms <= 0:
+        raise InputError(
+            f"{text!r} has no atoms; element amounts must be above 0."
+        )
+    return comp
 
 
 class ThermalConductivityModel:
@@ -117,11 +170,7 @@ class ThermalConductivityModel:
         """Scaled feature vector for one composition, and how many raw
         features were NaN and had to be imputed with the training mean."""
         self._load()
-        if not isinstance(composition, str) or not composition.strip():
-            raise ValueError("Composition must be a non-empty string")
-        comp = Composition(composition.strip())
-        if comp.num_atoms <= 0:
-            raise ValueError(f"Composition {composition!r} has no atoms")
+        comp = parse_composition(composition)
 
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
@@ -171,8 +220,11 @@ class ThermalConductivityModel:
 
     def _process_instance(self, values: dict, logger) -> dict:
         composition = values.get("composition")
-        if composition is None:
-            raise ValueError("No composition provided")
+        if composition is None or (
+            isinstance(composition, str) and not composition.strip()
+        ):
+            raise InputError(f"Please enter a composition. {FORMULA_HINT}")
+        parse_composition(composition)  # report a bad formula before loading the model
         result = self.predict(composition)
         logger.info("predicted", composition=composition, **result)
         if result["imputed_features"]:
@@ -186,20 +238,12 @@ class ThermalConductivityModel:
         self, files: dict[str, tuple[Path, str]], output_dir: Path, logger
     ) -> dict:
         if "file" not in files:
-            raise ValueError("No input file provided")
-        csv_path, _ = files["file"]
-
-        try:
-            data = pd.read_csv(csv_path)
-        except Exception as e:
-            raise ValueError(f"Could not read input CSV: {e}") from e
-        if "composition" not in data.columns:
-            raise ValueError(
-                "Input CSV must have a 'composition' column "
-                f"(found: {', '.join(map(str, data.columns))})"
+            raise InputError(
+                "No CSV file was given. Upload a CSV with a 'composition' column "
+                "of chemical formulas."
             )
-        if data.empty:
-            raise ValueError("Input CSV has no rows")
+        csv_path, _ = files["file"]
+        data = self._read_csv(csv_path)
 
         self._load()
         X = np.zeros((len(data), len(self.columns)))
@@ -214,9 +258,14 @@ class ThermalConductivityModel:
                 logger.warning("failed to featurize", row=i, composition=str(comp), error=str(e))
                 errors[i] = str(e)
 
+        if not ok.any():
+            raise InputError(
+                f"None of the {len(data)} compositions could be read. The first "
+                f"one ({str(data['composition'].iloc[0])!r}) failed: {errors[0]}"
+            )
+
         kappa = np.full(len(data), np.nan)
-        if ok.any():
-            kappa[ok] = self._to_kappa(self.forest.predict(X[ok]))
+        kappa[ok] = self._to_kappa(self.forest.predict(X[ok]))
 
         # Same layout as the original predict.py: the input columns plus
         # kappa_pred, with a status column per row.
@@ -236,6 +285,49 @@ class ThermalConductivityModel:
         return {}
 
     @staticmethod
+    def _read_csv(csv_path: Path) -> pd.DataFrame:
+        """Read the dataset CSV, turning read problems into InputErrors."""
+        try:
+            data = pd.read_csv(csv_path)
+        except pd.errors.EmptyDataError:
+            raise InputError(
+                "The CSV file is empty. It needs a header row with a "
+                "'composition' column and one chemical formula per row."
+            ) from None
+        except UnicodeDecodeError:
+            raise InputError(
+                "The file is not a plain-text CSV file. Save it as CSV (UTF-8) "
+                "with a 'composition' column."
+            ) from None
+        except pd.errors.ParserError as e:
+            raise InputError(
+                "Could not read the CSV file: some rows have more values than "
+                f"the header row ({_parser_detail(e)}). Check for unquoted commas "
+                "in a cell."
+            ) from None
+        except Exception as e:
+            raise InputError(f"Could not read the CSV file ({e}).") from None
+
+        columns = [str(c) for c in data.columns]
+        if "composition" not in columns:
+            close = [c for c in columns if c.strip().lower() == "composition"]
+            hint = (
+                f" Rename the column {close[0]!r} to 'composition'."
+                if close
+                else ""
+            )
+            raise InputError(
+                "The CSV file needs a 'composition' column (found: "
+                f"{', '.join(columns)}).{hint}"
+            )
+        if data.empty:
+            raise InputError(
+                "The CSV file has a header row but no compositions; add one "
+                "chemical formula per row."
+            )
+        return data
+
+    @staticmethod
     def _plot_histogram(kappa: np.ndarray, path: Path) -> None:
         fig, ax = plt.subplots(figsize=(6.4, 4.8))
         if kappa.size:
@@ -248,3 +340,9 @@ class ThermalConductivityModel:
         fig.tight_layout()
         fig.savefig(path, format="png", dpi=100)
         plt.close(fig)
+
+
+def _parser_detail(e: Exception) -> str:
+    """'Expected 1 fields in line 3, saw 2' from a pandas ParserError."""
+    msg = str(e)
+    return msg.split("C error: ", 1)[-1].strip().rstrip(".")

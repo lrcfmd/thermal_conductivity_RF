@@ -23,7 +23,7 @@
           "composition": {
             "type": "string",
             "required": true,
-            "description": "Chemical formula, e.g. \"Bi2Te3\" or \"Ag9 Tl1 Te5\""
+            "description": "Chemical formula using case-sensitive element symbols, e.g. \"Bi2Te3\" or \"Ag9 Tl1 Te5\""
           }
         },
         "outputs": {
@@ -46,7 +46,12 @@
             "type": "file",
             "mime_type": "text/csv",
             "required": true,
-            "description": "CSV file with a 'composition' column of chemical formulas; other columns are passed through"
+            "description": "CSV file with a header row and one material per row: a 'composition' column of chemical formulas (e.g. Bi2Te3); any other columns are copied to the output unchanged",
+            "header": true,
+            "columns": [
+              { "name": "composition", "type": "string", "description": "Chemical formula with case-sensitive element symbols, e.g. Bi2Te3 or Ag9 Tl1 Te5" }
+            ],
+            "example": "name,composition\nBismuth telluride,Bi2Te3\nLead telluride,PbTe\nSilicon,Si\nStrontium titanate,SrTiO3\nSilver thallium telluride,Ag9 Tl1 Te5\n"
           }
         },
         "outputs": {
